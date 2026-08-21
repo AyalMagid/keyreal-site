@@ -184,7 +184,7 @@ export default function RootLayout({ children }) {
             .kr-hero-btns { display: contents !important; }
             .kr-hero-btns a:first-child { order: 4 !important; width: 100% !important; }
             .kr-no-signup { order: 5 !important; margin: 10px 0 0 !important; text-align: center !important; align-self: center !important; }
-            .kr-hero-btns a:last-child { order: 6 !important; align-self: center !important; margin: 12px auto 0 !important; width: auto !important; min-height: 0 !important; padding: 6px 4px !important; background: transparent !important; box-shadow: none !important; color: #FBA43C !important; font-size: 15px !important; font-weight: 700 !important; text-decoration: underline !important; text-underline-offset: 4px !important; }
+            .kr-hero-btns a:last-child { order: 6 !important; align-self: center !important; margin: 12px auto 0 !important; display: flex !important; width: fit-content !important; max-width: 100% !important; min-height: 0 !important; padding: 6px 4px !important; background: transparent !important; box-shadow: none !important; color: #FBA43C !important; font-size: 15px !important; font-weight: 700 !important; text-decoration: underline !important; text-underline-offset: 4px !important; }
             .kr-stats { order: 8 !important; margin-top: 30px !important; gap: 12px !important; max-width: none !important; text-align: center !important; }
             .kr-stats > div > div:first-child { font-size: 26px !important; }
             .kr-stats > div > div:last-child { font-size: 12.5px !important; }

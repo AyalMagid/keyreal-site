@@ -9,15 +9,18 @@
   }
 
   document.addEventListener("pointerdown", function (e) {
-    // <details>-based sheet
-    var inside = e.target.closest("details");
-    closeDetails(inside);
+    // e.target can be a non-element (scrollbar, text node), which has no
+    // .closest and would throw on every such gesture.
+    var el = e.target instanceof Element ? e.target : null;
+    if (!el) return;
+
+    closeDetails(el.closest("details"));
 
     // aria-expanded button + its controlled panel
     document.querySelectorAll('[aria-expanded="true"][aria-controls]').forEach(function (btn) {
       var panel = document.getElementById(btn.getAttribute("aria-controls"));
-      if (btn.contains(e.target)) return;
-      if (panel && panel.contains(e.target)) return;
+      if (btn.contains(el)) return;
+      if (panel && panel.contains(el)) return;
       btn.click();
     });
   }, true);
