@@ -37,7 +37,7 @@ export default function Footer() {
             {t("הבוט למציאת דירות בישראל. הדירות הטובות מגיעות אליכם ראשונות")}
           </p>
           <div style={{ display: "flex", gap: 10, marginTop: 4 }}>
-            <a href="https://t.me/Rent_tlv_bot" target="_blank" rel="noopener" title={t("טלגרם")} className="kr-fcircle" style={social}><TelegramIcon /></a>
+            <a href="https://t.me/Rent_tlv_bot" title={t("טלגרם")} className="kr-fcircle" style={social}><TelegramIcon /></a>
             <a href="https://www.instagram.com/keyreal_bot" target="_blank" rel="noopener" title={t("אינסטגרם")} className="kr-fcircle" style={social}><InstagramIcon /></a>
             <a href="#" data-kr-copy="support@keyreal.co.il" title={t("העתקת כתובת הדוא״ל")} aria-label={t("העתקת כתובת הדוא״ל")} className="kr-fcircle" style={social}><MailIcon /></a>
           </div>

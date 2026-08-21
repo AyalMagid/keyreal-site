@@ -205,7 +205,7 @@ export default function LandingView() {
 
   const sendDraft = () => {
     const q = draft.trim();
-    window.open(BOT_URL + (q ? "?text=" + encodeURIComponent(q) : ""), "_blank", "noopener");
+    window.location.href = BOT_URL + (q ? "?text=" + encodeURIComponent(q) : "");
     setDraft("");
   };
 
@@ -237,7 +237,7 @@ export default function LandingView() {
             <strong style={{ color: c.accent, fontWeight: 700 }}>{t("התראות תוך דקות מרגע הפרסום")}</strong>
           </p>
           <div className="kr-hero-btns" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 14, marginBottom: 40 }}>
-            <a href={BOT_URL} target="_blank" rel="noopener" className="kr-lift kr-purple" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10, padding: "0 32px", minHeight: 56, borderRadius: 14, background: PURPLE, color: "#FFFFFF", fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 18, lineHeight: 1, boxShadow: "0 4px 12px oklch(0.45 0.16 300 / 0.2)" }}>
+            <a href={BOT_URL} className="kr-lift kr-purple" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10, padding: "0 32px", minHeight: 56, borderRadius: 14, background: PURPLE, color: "#FFFFFF", fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 18, lineHeight: 1, boxShadow: "0 4px 12px oklch(0.45 0.16 300 / 0.2)" }}>
               {t("התחילו עכשיו בחינם")}
             </a>
             <a href="#why" className="kr-lift kr-orange" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", padding: "0 30px", minHeight: 56, borderRadius: 14, background: ORANGE, color: ORANGE_INK, fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 18, lineHeight: 1, boxShadow: ORANGE_SHADOW }}>
@@ -597,7 +597,7 @@ export default function LandingView() {
           <p style={{ margin: "0 auto 32px", maxWidth: 540, fontSize: 19.5, lineHeight: 1.5, color: c.sub }}>
             {t("תנו לקיריל לעשות את העבודה. בלי הרשמה, בלי התחייבות")}
           </p>
-          <a href={BOT_URL} target="_blank" rel="noopener" className="kr-lift kr-orange" style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "18px 40px", borderRadius: 15, background: ORANGE, color: ORANGE_INK, fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 19.5, boxShadow: ORANGE_SHADOW }}>
+          <a href={BOT_URL} className="kr-lift kr-orange" style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "18px 40px", borderRadius: 15, background: ORANGE, color: ORANGE_INK, fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 19.5, boxShadow: ORANGE_SHADOW }}>
             {t("קיריל, תמצא לי דירה")}
           </a>
         </div>

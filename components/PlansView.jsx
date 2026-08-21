@@ -103,8 +103,6 @@ function PlanCard({ plan }) {
 
       <a
         href={plan.url}
-        target="_blank"
-        rel="noopener"
         className={plan.hot ? "kr-lift kr-orange" : "kr-lift kr-ghost"}
         style={{
           display: "inline-flex",
