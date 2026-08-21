@@ -268,6 +268,7 @@ export default function RootLayout({ children }) {
         </SiteProvider>
         <Script src="/a11y.js" strategy="afterInteractive" />
         <Script src="/copy-mail.js" strategy="afterInteractive" />
+        <Script src="/tg-link.js" strategy="afterInteractive" />
         <Script src="/menu-close.js" strategy="afterInteractive" />
       </body>
     </html>

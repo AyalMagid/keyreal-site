@@ -211,7 +211,15 @@ export default function LandingView() {
 
   const sendDraft = () => {
     const q = draft.trim();
-    window.location.href = BOT_URL + (q ? "?text=" + encodeURIComponent(q) : "");
+    const web = BOT_URL + (q ? "?text=" + encodeURIComponent(q) : "");
+    // Same app-first handoff as tg-link.js, which only intercepts real <a> clicks.
+    const deep = "tg://resolve?domain=Rent_tlv_bot" + (q ? "&text=" + encodeURIComponent(q) : "");
+    const fallback = setTimeout(() => { if (!document.hidden) window.location.href = web; }, 800);
+    document.addEventListener("visibilitychange", function onHide() {
+      if (document.hidden) clearTimeout(fallback);
+      document.removeEventListener("visibilitychange", onHide);
+    });
+    window.location.href = deep;
     setDraft("");
   };
 
