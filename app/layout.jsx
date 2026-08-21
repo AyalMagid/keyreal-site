@@ -172,6 +172,7 @@ export default function RootLayout({ children }) {
             .kr-table td:nth-child(2) { font-size: 21px; margin-bottom: 3px; }
             .kr-table td:last-child { font-size: 15.5px; line-height: 1.55; }
             .kr-article-pad h1 { font-size: 27px !important; line-height: 1.2 !important; letter-spacing: -0.02em !important; }
+            .kr-city-stats { grid-template-columns: 1fr !important; gap: 10px !important; }
             .kr-article-pad { padding: 0 18px !important; }
             .kr-fields { grid-template-columns: 1fr !important; }
             .kr-hero { grid-template-columns: 1fr !important; padding: 40px 18px 24px !important; gap: 30px !important; }
@@ -208,6 +209,7 @@ export default function RootLayout({ children }) {
             .kr-table td:nth-child(2) { font-size: 21px; margin-bottom: 3px; }
             .kr-table td:last-child { font-size: 15.5px; line-height: 1.55; }
             .kr-article-pad h1 { font-size: 27px !important; line-height: 1.2 !important; letter-spacing: -0.02em !important; }
+            .kr-city-stats { grid-template-columns: 1fr !important; gap: 10px !important; }
             .kr-article-pad { padding: 0 18px !important; }
             .kr-fields { grid-template-columns: 1fr !important; }
             .kr-incl { grid-template-columns: 1fr !important; column-gap: 0 !important; justify-content: start !important; }
@@ -262,11 +264,11 @@ export default function RootLayout({ children }) {
       <body suppressHydrationWarning>
         <SiteProvider>
           <SiteShell>{children}</SiteShell>
+          <Analytics />
         </SiteProvider>
         <Script src="/a11y.js" strategy="afterInteractive" />
         <Script src="/copy-mail.js" strategy="afterInteractive" />
         <Script src="/menu-close.js" strategy="afterInteractive" />
-        <Analytics />
       </body>
     </html>
   );

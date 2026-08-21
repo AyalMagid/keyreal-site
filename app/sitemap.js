@@ -1,4 +1,5 @@
 import { ARTICLES } from "../lib/articles";
+import { publishedCities } from "../lib/cities";
 
 // /legal is intentionally absent: it carries robots noindex.
 const ROUTES = [
@@ -16,6 +17,12 @@ export default function sitemap() {
       lastModified: now,
       changeFrequency: r.changeFrequency,
       priority: r.priority
+    })),
+    ...publishedCities().map((x) => ({
+      url: `https://www.keyreal.co.il/apartments/${x.slug}`,
+      lastModified: new Date(x.date),
+      changeFrequency: "monthly",
+      priority: 0.9
     })),
     ...ARTICLES.map((a) => ({
       url: `https://www.keyreal.co.il/blog/${a.slug}`,

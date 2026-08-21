@@ -150,6 +150,12 @@ export default function LandingView() {
     return () => clearInterval(id);
   }, [draftFocus, draft]);
 
+  // The carousel swaps in three unseen photos per rotation, so without a warm
+  // cache each rotation shows empty avatar circles while they download.
+  useEffect(() => {
+    TESTIMONIALS.forEach((t) => { const im = new Image(); im.src = t.photo; });
+  }, []);
+
   // Testimonial carousel
   useEffect(() => {
     rotRef.current = setInterval(() => { if (!still()) setTPage((p) => (p + 1) % 3); }, 7000);
@@ -510,7 +516,7 @@ export default function LandingView() {
           {trio.map((item, i) => (
             <div key={tPage * 3 + i} style={{ position: "relative", display: "flex", flexDirection: "column", gap: 18, minHeight: 268, padding: "58px 28px 26px", borderRadius: 28, background: s.tCard, border: `1px solid ${s.tCardBd}`, boxShadow: s.cardShadow, animation: "kr-in 0.55s cubic-bezier(0.2,0.8,0.2,1) both" }}>
               <div style={{ position: "absolute", top: -26, right: 26, width: 66, height: 66, borderRadius: "50%", border: `5px solid ${s.tRing}`, overflow: "hidden", background: "linear-gradient(150deg, oklch(0.62 0.2 300), oklch(0.5 0.16 320))" }}>
-                <img src={item.photo} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                <img src={item.photo} alt={item.name} width="66" height="66" decoding="async" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               </div>
               <div className="kr-tname" style={{ display: "flex", alignItems: "baseline", gap: 7, paddingRight: 66, whiteSpace: "nowrap" }}>
                 <span style={{ fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 17, color: s.tName }}>{item.name}</span>
