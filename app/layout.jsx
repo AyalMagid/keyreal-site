@@ -174,7 +174,6 @@ export default function RootLayout({ children }) {
             .kr-fields { grid-template-columns: 1fr !important; }
             .kr-hero { grid-template-columns: 1fr !important; padding: 40px 18px 24px !important; gap: 30px !important; }
             .kr-hero h1 { font-size: 33px !important; line-height: 1.12 !important; letter-spacing: -0.03em !important; margin-bottom: 14px !important; }
-            .kr-hero h1 br { display: none !important; }
             .kr-hero > div > p { font-size: 16px !important; line-height: 1.5 !important; max-width: none !important; margin-bottom: 26px !important; }
             .kr-hero > div > p br { display: none !important; }
             .kr-hero > div:first-child { display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; }
@@ -182,8 +181,8 @@ export default function RootLayout({ children }) {
                the secondary link can be re-ordered independently on mobile. */
             .kr-hero-btns { display: contents !important; }
             .kr-hero-btns a:first-child { order: 4 !important; width: 100% !important; }
-            .kr-no-signup { order: 5 !important; margin: 10px 0 0 !important; text-align: center !important; }
-            .kr-hero-btns a:last-child { order: 6 !important; align-self: center !important; margin-top: 24px !important; min-height: 0 !important; padding: 6px 4px !important; background: transparent !important; box-shadow: none !important; color: #FBA43C !important; font-size: 15px !important; font-weight: 700 !important; text-decoration: underline !important; text-underline-offset: 4px !important; }
+            .kr-no-signup { order: 5 !important; margin: 10px 0 0 !important; text-align: center !important; align-self: center !important; }
+            .kr-hero-btns a:last-child { order: 6 !important; align-self: center !important; margin: 12px auto 0 !important; width: auto !important; min-height: 0 !important; padding: 6px 4px !important; background: transparent !important; box-shadow: none !important; color: #FBA43C !important; font-size: 15px !important; font-weight: 700 !important; text-decoration: underline !important; text-underline-offset: 4px !important; }
             .kr-stats { order: 8 !important; margin-top: 30px !important; gap: 12px !important; max-width: none !important; text-align: center !important; }
             .kr-stats > div > div:first-child { font-size: 26px !important; }
             .kr-stats > div > div:last-child { font-size: 12.5px !important; }
