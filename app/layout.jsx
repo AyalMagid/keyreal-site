@@ -146,7 +146,7 @@ export default function RootLayout({ children }) {
           }
 
           @media (max-width: 980px) {
-            .kr-fab { left: 0 !important; right: 0 !important; margin-inline: 14px !important; transform: none !important; bottom: 14px !important; width: auto !important; max-width: none !important; height: 56px !important; border-radius: 999px !important; flex-direction: row !important; gap: 10px !important; padding: 0 26px !important; }
+            .kr-fab { left: 0 !important; right: 0 !important; margin-inline: 14px !important; transform: none !important; bottom: max(6px, env(safe-area-inset-bottom)) !important; width: auto !important; max-width: none !important; height: 56px !important; border-radius: 999px !important; flex-direction: row !important; gap: 10px !important; padding: 0 26px !important; }
             .kr-fab:hover { transform: none !important; }
             .kr-fab img { width: 30px !important; height: 30px !important; }
             .kr-fab span { font-size: 16.5px !important; }
