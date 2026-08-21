@@ -512,7 +512,7 @@ export default function LandingView() {
               <div style={{ position: "absolute", top: -26, right: 26, width: 66, height: 66, borderRadius: "50%", border: `5px solid ${s.tRing}`, overflow: "hidden", background: "linear-gradient(150deg, oklch(0.62 0.2 300), oklch(0.5 0.16 320))" }}>
                 <img src={item.photo} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               </div>
-              <div className="kr-tname" style={{ display: "flex", alignItems: "baseline", gap: 7, paddingInlineEnd: 66, whiteSpace: "nowrap" }}>
+              <div className="kr-tname" style={{ display: "flex", alignItems: "baseline", gap: 7, paddingRight: 66, whiteSpace: "nowrap" }}>
                 <span style={{ fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 17, color: s.tName }}>{item.name}</span>
                 <span style={{ fontSize: 14.5, color: s.tCity }}>{t(item.city)}</span>
               </div>

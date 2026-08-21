@@ -234,7 +234,7 @@ export default function RootLayout({ children }) {
             .kr-tgrid > div { min-height: 0 !important; }
             /* The avatar is absolutely placed in the top corner; the name row must
                keep clear of it and be allowed to wrap on narrow screens. */
-            .kr-tname { padding-inline-end: 74px !important; white-space: normal !important; flex-wrap: wrap !important; row-gap: 2px !important; }
+            .kr-tname { padding-right: 74px !important; padding-inline-end: 0 !important; white-space: normal !important; flex-wrap: wrap !important; row-gap: 2px !important; }
             .kr-cta { padding: 44px 22px 48px !important; }
             .kr-cta h2 { font-size: 32px !important; }
             .kr-cta p { font-size: 17px !important; }
