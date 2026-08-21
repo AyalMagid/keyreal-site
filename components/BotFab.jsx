@@ -40,13 +40,13 @@ export default function BotFab() {
         width: 88,
         height: 88,
         borderRadius: "50%",
-        background: "#FFFFFF",
-        border: "2px solid oklch(0.7 0.19 300)",
-        boxShadow: "0 16px 40px oklch(0.35 0.12 300 / 0.45)"
+        background: mode === "dark" ? "oklch(0.26 0.05 315)" : "#FFFFFF",
+        border: `2px solid ${mode === "dark" ? "oklch(0.62 0.17 300)" : "oklch(0.7 0.19 300)"}`,
+        boxShadow: mode === "dark" ? "0 16px 40px rgba(0,0,0,0.6)" : "0 16px 40px oklch(0.35 0.12 300 / 0.45)"
       }}
     >
       <img src="/assets/logo-sm.png" alt="קיריל" width={44} height={44} style={{ objectFit: "contain", display: "block" }} />
-      <span style={{ fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 15, color: "#5B2D82", lineHeight: 1 }}>
+      <span style={{ fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 15, color: mode === "dark" ? "#EFE6F6" : "#5B2D82", lineHeight: 1 }}>
         {t("לקיריל")}
       </span>
     </a>

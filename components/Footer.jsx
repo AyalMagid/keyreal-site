@@ -84,7 +84,7 @@ export default function Footer() {
           fontSize: 13.5
         }}
       >
-        <span>{t("© 2026 Keyreal. כל הזכויות שמורות")}</span>
+        <span>{t("© 2025 Keyreal. כל הזכויות שמורות")}</span>
         <span>support@keyreal.co.il</span>
       </div>
     </footer>

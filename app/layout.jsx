@@ -146,6 +146,8 @@ export default function RootLayout({ children }) {
           }
 
           @media (max-width: 980px) {
+            /* iOS zooms in on focus when a field's font-size is under 16px. */
+            input, textarea, select { font-size: 16px !important; }
             .kr-fab { left: 0 !important; right: 0 !important; margin-inline: 14px !important; transform: none !important; bottom: max(6px, env(safe-area-inset-bottom)) !important; width: auto !important; max-width: none !important; height: 56px !important; border-radius: 999px !important; flex-direction: row !important; gap: 10px !important; padding: 0 26px !important; }
             .kr-fab:hover { transform: none !important; }
             .kr-fab img { width: 30px !important; height: 30px !important; }
@@ -230,6 +232,9 @@ export default function RootLayout({ children }) {
             #how { padding-top: 0 !important; padding-bottom: 44px !important; }
             .kr-tgrid { grid-template-columns: 1fr !important; gap: 46px !important; }
             .kr-tgrid > div { min-height: 0 !important; }
+            /* The avatar is absolutely placed in the top corner; the name row must
+               keep clear of it and be allowed to wrap on narrow screens. */
+            .kr-tname { padding-inline-end: 74px !important; white-space: normal !important; flex-wrap: wrap !important; row-gap: 2px !important; }
             .kr-cta { padding: 44px 22px 48px !important; }
             .kr-cta h2 { font-size: 32px !important; }
             .kr-cta p { font-size: 17px !important; }
@@ -260,6 +265,7 @@ export default function RootLayout({ children }) {
         </SiteProvider>
         <Script src="/a11y.js" strategy="afterInteractive" />
         <Script src="/copy-mail.js" strategy="afterInteractive" />
+        <Script src="/menu-close.js" strategy="afterInteractive" />
         <Analytics />
       </body>
     </html>
