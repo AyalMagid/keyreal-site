@@ -508,7 +508,7 @@ export default function LandingView() {
         </h2>
         <div className="kr-grid3 kr-tgrid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0,1fr))", gap: 24 }}>
           {trio.map((item, i) => (
-            <div key={tPage * 3 + i} style={{ position: "relative", display: "flex", flexDirection: "column", gap: 18, minHeight: 268, padding: "46px 28px 26px", borderRadius: 28, background: s.tCard, border: `1px solid ${s.tCardBd}`, boxShadow: s.cardShadow, animation: "kr-in 0.55s cubic-bezier(0.2,0.8,0.2,1) both" }}>
+            <div key={tPage * 3 + i} style={{ position: "relative", display: "flex", flexDirection: "column", gap: 18, minHeight: 268, padding: "58px 28px 26px", borderRadius: 28, background: s.tCard, border: `1px solid ${s.tCardBd}`, boxShadow: s.cardShadow, animation: "kr-in 0.55s cubic-bezier(0.2,0.8,0.2,1) both" }}>
               <div style={{ position: "absolute", top: -26, right: 26, width: 66, height: 66, borderRadius: "50%", border: `5px solid ${s.tRing}`, overflow: "hidden", background: "linear-gradient(150deg, oklch(0.62 0.2 300), oklch(0.5 0.16 320))" }}>
                 <img src={item.photo} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               </div>
