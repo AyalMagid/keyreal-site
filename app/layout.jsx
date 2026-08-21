@@ -103,6 +103,8 @@ export default function RootLayout({ children }) {
           @keyframes kr-pop { 0% { opacity: 0; transform: scale(0.5); } 62% { transform: scale(1.14); } 100% { opacity: 1; transform: scale(1); } }
           @keyframes kr-spin { to { transform: rotate(360deg); } }
           @keyframes kr-menu-in { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+          @keyframes kr-sheet-in { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+          @keyframes kr-caret { 0%, 45% { opacity: 1; } 55%, 100% { opacity: 0; } }
           @keyframes kr-open { from { grid-template-rows: 0fr; opacity: 0; } to { grid-template-rows: 1fr; opacity: 1; } }
 
           /* Hover states. Inline styles cannot express :hover, so they live here
@@ -128,6 +130,8 @@ export default function RootLayout({ children }) {
             .kr-fab:hover { transform: scale(1.12); }
             .kr-send { transition: transform 0.18s cubic-bezier(0.2,0.8,0.2,1); }
             .kr-send:hover { transform: scale(1.08); }
+            .kr-mrow { transition: color 0.15s ease, background 0.15s ease; }
+            .kr-mrow:hover { color: var(--kr-head) !important; background: var(--kr-chip) !important; }
             .kr-dot { transition: opacity 0.18s ease; }
             .kr-dot:hover { opacity: 0.7; }
           }
@@ -168,14 +172,25 @@ export default function RootLayout({ children }) {
             .kr-article-pad h1 { font-size: 27px !important; line-height: 1.2 !important; letter-spacing: -0.02em !important; }
             .kr-article-pad { padding: 0 18px !important; }
             .kr-fields { grid-template-columns: 1fr !important; }
-            .kr-hero { grid-template-columns: 1fr !important; padding: 40px 20px 24px !important; gap: 30px !important; }
-            .kr-hero h1 { font-size: 40px !important; }
-            .kr-hero p { font-size: 17.5px !important; }
-            .kr-hero-btns { flex-direction: column !important; align-items: stretch !important; }
-            .kr-hero-btns a { width: 100% !important; }
-            .kr-stats { gap: 12px !important; max-width: none !important; }
+            .kr-hero { grid-template-columns: 1fr !important; padding: 40px 18px 24px !important; gap: 30px !important; }
+            .kr-hero h1 { font-size: 33px !important; line-height: 1.12 !important; letter-spacing: -0.03em !important; margin-bottom: 14px !important; }
+            .kr-hero h1 br { display: none !important; }
+            .kr-hero > div > p { font-size: 16px !important; line-height: 1.5 !important; max-width: none !important; margin-bottom: 26px !important; }
+            .kr-hero > div > p br { display: none !important; }
+            .kr-hero > div:first-child { display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; }
+            /* The hero column becomes one flow so the CTA, the reassurance line and
+               the secondary link can be re-ordered independently on mobile. */
+            .kr-hero-btns { display: contents !important; }
+            .kr-hero-btns a:first-child { order: 4 !important; width: 100% !important; }
+            .kr-no-signup { order: 5 !important; margin: 10px 0 0 !important; text-align: center !important; }
+            .kr-hero-btns a:last-child { order: 6 !important; align-self: center !important; margin-top: 24px !important; min-height: 0 !important; padding: 6px 4px !important; background: transparent !important; box-shadow: none !important; color: #FBA43C !important; font-size: 15px !important; font-weight: 700 !important; text-decoration: underline !important; text-underline-offset: 4px !important; }
+            .kr-stats { order: 8 !important; margin-top: 30px !important; gap: 12px !important; max-width: none !important; text-align: center !important; }
             .kr-stats > div > div:first-child { font-size: 26px !important; }
-            .kr-phone { transform: scale(0.86); transform-origin: top center; }
+            .kr-stats > div > div:last-child { font-size: 12.5px !important; }
+            .kr-phone-wrap { justify-content: center !important; }
+            .kr-phone { animation: none !important; }
+            .kr-phone > div { width: 300px !important; padding: 9px !important; border-radius: 42px !important; }
+            .kr-phone > div > div { border-radius: 36px !important; height: 580px !important; }
             .kr-grid3 { grid-template-columns: 1fr !important; }
             .kr-sec .kr-grid3:has(> div > img) { margin-top: 40px !important; row-gap: 34px !important; }
             .kr-grid3 > div:nth-child(2) > img { right: 4px !important; top: -30px !important; width: 68px !important; }
@@ -210,15 +225,27 @@ export default function RootLayout({ children }) {
         .kr-foot-grid > div + div > a { font-size: 14px !important; line-height: 1.15 !important; padding: 5px 6px !important; margin-inline: -6px !important; }
         footer > div:last-child { flex-direction: row !important; flex-wrap: wrap !important; align-items: center !important; justify-content: space-between !important; gap: 4px 12px !important; margin-top: 10px !important; padding-top: 10px !important; font-size: 12px !important; }
             .kr-grid3 > div:first-child { grid-column: span 1 !important; padding: 24px 20px !important; }
-            section { padding-inline: 20px !important; }
-            section h2 { font-size: 34px !important; }
-            .kr-steps { gap: 14px !important; }
-            .kr-steps [data-step-block] { grid-template-columns: 1fr !important; }
-            .kr-steps [data-step-block] > div { grid-column: 1 !important; transform: none !important; }
-            .kr-steps [data-rail] { display: none !important; }
-            .kr-step-card { justify-content: stretch !important; }
-            .kr-step-card > div { max-width: none !important; opacity: 1 !important; }
+            section { padding-inline: 18px !important; }
+            .kr-sec h2 { font-size: 32px !important; }
+            #why { padding-top: 44px !important; padding-bottom: 44px !important; }
+            #how { padding-top: 0 !important; padding-bottom: 44px !important; }
+            .kr-tgrid { grid-template-columns: 1fr !important; gap: 46px !important; }
+            .kr-tgrid > div { min-height: 0 !important; }
+            .kr-cta { padding: 44px 22px 48px !important; }
+            .kr-cta h2 { font-size: 32px !important; }
+            .kr-cta p { font-size: 17px !important; }
+            .kr-plans-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
+            .kr-plans-h1 { max-width: 12ch !important; margin-inline: auto !important; }
+            .kr-steps { gap: 0 !important; }
+            .kr-steps [data-step-block] { grid-template-columns: 44px 1fr !important; align-items: start !important; padding-bottom: 20px !important; }
+            .kr-step-card { grid-column: 2 !important; grid-row: 1 !important; justify-content: flex-start !important; }
+            .kr-steps [data-step-block] > div:last-child { grid-column: 1 !important; grid-row: 1 !important; transform: none !important; justify-content: center !important; }
+            .kr-steps [data-step-block] > div:last-child > div { width: 38px !important; height: 38px !important; font-size: 13px !important; }
+            .kr-step-card [data-reveal="bubble"] { max-width: 100% !important; width: 100% !important; box-sizing: border-box !important; opacity: 1 !important; }
+            .kr-steps [data-rail] { left: auto !important; inset-inline-start: 21px !important; margin-left: 0 !important; margin-inline-start: -2px !important; transform: none !important; }
             .kr-connector { display: none !important; }
+            .kr-steps [data-step-block="0"] [data-rail] { top: 19px !important; bottom: 0 !important; }
+            .kr-steps [data-step-block="3"] [data-rail] { top: 0 !important; bottom: calc(100% - 19px) !important; }
           }
         `}</style>
         <script

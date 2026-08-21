@@ -248,7 +248,7 @@ export default function ContactView() {
               const Tag = isCopy ? "button" : "a";
               const extra = isCopy
                 ? { type: "button", onClick: () => copyAddress(ch.copy), title: t("העתקת הכתובת") }
-                : { href: ch.url };
+                : { href: ch.url, target: "_blank", rel: "noopener" };
               return (
               <Tag
                 key={ch.title}

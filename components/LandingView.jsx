@@ -119,7 +119,7 @@ export default function LandingView() {
   const s = SKIN[mode];
 
   const [step, setStep] = useState(1);
-  const [open, setOpen] = useState(0);
+  const [open, setOpen] = useState(-1);
   const [tPage, setTPage] = useState(0);
   const [draft, setDraft] = useState("");
   const [draftFocus, setDraftFocus] = useState(false);
@@ -237,14 +237,14 @@ export default function LandingView() {
             <strong style={{ color: c.accent, fontWeight: 700 }}>{t("התראות תוך דקות מרגע הפרסום")}</strong>
           </p>
           <div className="kr-hero-btns" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 14, marginBottom: 40 }}>
-            <a href={BOT_URL} className="kr-lift kr-purple" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10, padding: "0 32px", minHeight: 56, borderRadius: 14, background: PURPLE, color: "#FFFFFF", fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 18, lineHeight: 1, boxShadow: "0 4px 12px oklch(0.45 0.16 300 / 0.2)" }}>
+            <a href={BOT_URL} target="_blank" rel="noopener" className="kr-lift kr-purple" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10, padding: "0 32px", minHeight: 56, borderRadius: 14, background: PURPLE, color: "#FFFFFF", fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 18, lineHeight: 1, boxShadow: "0 4px 12px oklch(0.45 0.16 300 / 0.2)" }}>
               {t("התחילו עכשיו בחינם")}
             </a>
             <a href="#why" className="kr-lift kr-orange" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", padding: "0 30px", minHeight: 56, borderRadius: 14, background: ORANGE, color: ORANGE_INK, fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 18, lineHeight: 1, boxShadow: ORANGE_SHADOW }}>
               {t("למה דווקא קיריל")}
             </a>
           </div>
-          <div style={{ fontSize: 14.5, color: c.muted, margin: "-26px 0 34px" }}>{t("כדי להתחיל לחפש לא צריך למסור שם, מייל, טלפון או פרטי אשראי")}</div>
+          <div className="kr-no-signup" style={{ fontSize: 14.5, color: c.muted, margin: "-26px 0 34px" }}>{t("כדי להתחיל לחפש לא צריך למסור שם, מייל, טלפון או פרטי אשראי")}</div>
           <div className="kr-stats" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0,1fr))", gap: 20, maxWidth: 560, borderTop: `1px solid ${s.hairline}`, paddingTop: 26 }}>
             {STATS.map((st) => (
               <div key={st.n}>
@@ -335,11 +335,21 @@ export default function LandingView() {
                       placeholder={t(HINTS[hintIdx % HINTS.length])}
                       style={{
                         width: "100%", padding: "11px 14px", borderRadius: 999, background: "#FFFFFF",
-                        border: `1px solid ${draftFocus ? PURPLE : "oklch(0.5 0.05 300 / 0.22)"}`,
+                        // A visible ring at rest: on touch there is no caret to hint that this is an input.
+                        border: `1.5px solid ${draftFocus ? PURPLE : "oklch(0.62 0.2 300 / 0.5)"}`,
                         fontFamily: "Assistant, sans-serif", fontSize: 13.5, color: "#372361", outline: "none",
                         boxShadow: draftFocus ? "0 0 0 4px oklch(0.62 0.2 300 / 0.16)" : "none"
                       }}
                     />
+                    {!draft && !draftFocus ? (
+                      <span
+                        aria-hidden="true"
+                        style={{
+                          position: "absolute", insetInlineStart: 14, width: 1.5, height: 16,
+                          background: PURPLE, animation: "kr-caret 1.1s step-end infinite", pointerEvents: "none"
+                        }}
+                      />
+                    ) : null}
                   </label>
                   <button type="button" onClick={sendDraft} title={t("שליחה לקיריל")} className="kr-send" style={{ width: 38, height: 38, border: 0, padding: 0, borderRadius: "50%", background: PURPLE, display: "flex", alignItems: "center", justifyContent: "center", flex: "none", cursor: "pointer" }}>
                     <SendIcon />
@@ -496,7 +506,7 @@ export default function LandingView() {
         <h2 style={{ fontFamily: "Heebo, sans-serif", fontWeight: 900, fontSize: 52, letterSpacing: "-0.03em", margin: "0 0 52px", lineHeight: 1.05, color: c.head }}>
           {t("מה אומרים על קיריל")}
         </h2>
-        <div className="kr-grid3" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0,1fr))", gap: 24 }}>
+        <div className="kr-grid3 kr-tgrid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0,1fr))", gap: 24 }}>
           {trio.map((item, i) => (
             <div key={tPage * 3 + i} style={{ position: "relative", display: "flex", flexDirection: "column", gap: 18, minHeight: 268, padding: "46px 28px 26px", borderRadius: 28, background: s.tCard, border: `1px solid ${s.tCardBd}`, boxShadow: s.cardShadow, animation: "kr-in 0.55s cubic-bezier(0.2,0.8,0.2,1) both" }}>
               <div style={{ position: "absolute", top: -26, right: 26, width: 66, height: 66, borderRadius: "50%", border: `5px solid ${s.tRing}`, overflow: "hidden", background: "linear-gradient(150deg, oklch(0.62 0.2 300), oklch(0.5 0.16 320))" }}>
@@ -580,14 +590,14 @@ export default function LandingView() {
       </section>
 
       <section style={{ padding: "0 40px 72px", maxWidth: 1240, margin: "0 auto" }}>
-        <div style={{ position: "relative", overflow: "hidden", borderRadius: 32, padding: "70px 48px 72px", textAlign: "center", background: s.ctaBg, border: `1px solid ${s.ctaBd}`, boxShadow: s.cardShadow }}>
+        <div className="kr-cta" style={{ position: "relative", overflow: "hidden", borderRadius: 32, padding: "70px 48px 72px", textAlign: "center", background: s.ctaBg, border: `1px solid ${s.ctaBd}`, boxShadow: s.cardShadow }}>
           <h2 style={{ fontFamily: "Heebo, sans-serif", fontWeight: 900, fontSize: 54, letterSpacing: "-0.035em", margin: "0 0 14px", lineHeight: 1.04, color: s.ctaHead }}>
             {t("נמאס לכם לחפש ולהתאכזב?")}
           </h2>
           <p style={{ margin: "0 auto 32px", maxWidth: 540, fontSize: 19.5, lineHeight: 1.5, color: c.sub }}>
             {t("תנו לקיריל לעשות את העבודה. בלי הרשמה, בלי התחייבות")}
           </p>
-          <a href={BOT_URL} className="kr-lift kr-orange" style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "18px 40px", borderRadius: 15, background: ORANGE, color: ORANGE_INK, fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 19.5, boxShadow: ORANGE_SHADOW }}>
+          <a href={BOT_URL} target="_blank" rel="noopener" className="kr-lift kr-orange" style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "18px 40px", borderRadius: 15, background: ORANGE, color: ORANGE_INK, fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 19.5, boxShadow: ORANGE_SHADOW }}>
             {t("קיריל, תמצא לי דירה")}
           </a>
         </div>

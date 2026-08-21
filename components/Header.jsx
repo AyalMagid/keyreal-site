@@ -7,12 +7,35 @@ import { translator } from "../lib/i18n";
 import { BOT_URL } from "../lib/theme";
 
 const NAV = [
-  { he: "למה דווקא קיריל", href: "/#why" },
-  { he: "איך זה עובד", href: "/#how" },
-  { he: "חבילות", href: "/plans" },
-  { he: "צור קשר", href: "/contact" },
-  { he: "בלוג", href: "/blog" }
+  { he: "למה דווקא קיריל", href: "/#why", icon: <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" /> },
+  { he: "איך זה עובד", href: "/#how", icon: <><circle cx="5" cy="7" r="1.6" /><circle cx="5" cy="17" r="1.6" /><path d="M10 7h9M10 17h9" /></> },
+  { he: "חבילות", href: "/plans", icon: <><path d="M20.6 12.6 12.4 20.8a2 2 0 0 1-2.8 0l-6.4-6.4a2 2 0 0 1 0-2.8l8.2-8.2 9.2 1z" /><circle cx="16.4" cy="7.6" r="1.4" /></> },
+  { he: "צור קשר", href: "/contact", icon: <><rect x="2.5" y="4.5" width="19" height="15" rx="3" /><path d="M3.5 6.5 12 13l8.5-6.5" /></> },
+  { he: "בלוג", href: "/blog", icon: <><path d="M4 4.5h9a3 3 0 0 1 3 3V20a2.5 2.5 0 0 0-2.5-2.5H4z" /><path d="M20 4.5h-3a3 3 0 0 0-1 .2V20a2.5 2.5 0 0 1 2.5-2.5H20z" /></> }
 ];
+
+// One row in the mobile sheet: icon, label, nothing else.
+const RowIcon = ({ children }) => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" style={{ flex: "none", opacity: 0.75 }} aria-hidden="true">
+    {children}
+  </svg>
+);
+
+const rowStyle = {
+  display: "flex",
+  alignItems: "center",
+  gap: 12,
+  padding: "13px 6px",
+  color: "inherit",
+  fontSize: 17,
+  borderRadius: 10,
+  border: 0,
+  background: "none",
+  width: "100%",
+  textAlign: "start",
+  fontFamily: "inherit",
+  cursor: "pointer"
+};
 
 const circle = (c) => ({
   display: "inline-flex",
@@ -54,11 +77,7 @@ export default function Header() {
         onClick={() => setMenuOpen(false)}
         onMouseEnter={() => setHovered(item.href)}
         onMouseLeave={() => setHovered(null)}
-        style={menuOpen ? {
-          display: "flex", alignItems: "center", gap: 16, padding: "15px 4px",
-          fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 25, letterSpacing: "-0.02em",
-          color: c.head, borderBottom: `1px solid ${c.headerBd}`, whiteSpace: "nowrap"
-        } : { padding: "9px 4px", whiteSpace: "nowrap", transition: "color 0.15s ease" }}
+        style={{ padding: "9px 4px", whiteSpace: "nowrap", transition: "color 0.15s ease" }}
       >
         {/* The invisible bold copy reserves the width, so going bold on hover
             never nudges the neighbouring tabs. */}
@@ -171,37 +190,43 @@ export default function Header() {
           position: "absolute",
           top: "100%",
           insetInline: 0,
-          height: "calc(100dvh - 65px)",
-          maxHeight: "calc(100dvh - 65px)",
-          overflowY: "auto",
-          display: "flex",
           flexDirection: "column",
-          gap: 0,
-          padding: "20px 20px 24px",
-          fontSize: 17,
-          color: c.sub,
+          gap: 2,
+          padding: "10px 18px 18px",
           background: c.flat,
-          animation: "kr-sheet-in 0.28s cubic-bezier(0.2,0.9,0.25,1) both"
+          borderBottom: `1px solid ${c.cardBd}`,
+          boxShadow: "0 18px 40px rgba(0,0,0,0.22)",
+          color: c.sub,
+          animation: "kr-sheet-in 0.24s cubic-bezier(0.2,0.9,0.25,1) both"
         }}
       >
-        {NAV.map(navLink)}
-        <div style={{ display: "flex", gap: 8, marginTop: "auto", paddingTop: 22 }} className="kr-mpills">
-        <button type="button" onClick={toggleTheme} className="kr-mrow" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 7, flex: 1, minWidth: 0, padding: "12px 8px", borderRadius: 14, border: `1px solid ${c.cardBd}`, background: c.card, color: c.sub, fontSize: 13.5, fontFamily: "inherit", cursor: "pointer", whiteSpace: "nowrap" }}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" style={{ flex: "none", opacity: 0.75 }} aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" /></svg>
+        {NAV.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="kr-mrow"
+            onClick={() => setMenuOpen(false)}
+            style={rowStyle}
+          >
+            <RowIcon>{item.icon}</RowIcon>
+            <span>{t(item.he)}</span>
+          </Link>
+        ))}
+
+        <div style={{ height: 1, background: c.cardBd, margin: "8px 0" }} />
+
+        <button type="button" onClick={toggleTheme} className="kr-mrow" style={rowStyle}>
+          <RowIcon><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" /></RowIcon>
           <span>{t(c.themeRow)}</span>
         </button>
-        <button type="button" onClick={toggleLang} className="kr-mrow" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 7, flex: 1, minWidth: 0, padding: "12px 8px", borderRadius: 14, border: `1px solid ${c.cardBd}`, background: c.card, color: c.sub, fontSize: 13.5, fontFamily: "inherit", cursor: "pointer", whiteSpace: "nowrap" }}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" style={{ flex: "none", opacity: 0.75 }} aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M3.5 9.5h17M3.5 14.5h17" /><path d="M12 3c2.6 2.4 2.6 15.6 0 18M12 3C9.4 5.4 9.4 18.6 12 21" /></svg>
+        <button type="button" onClick={toggleLang} className="kr-mrow" style={rowStyle}>
+          <RowIcon><circle cx="12" cy="12" r="9" /><path d="M3.5 9.5h17M3.5 14.5h17" /><path d="M12 3c2.6 2.4 2.6 15.6 0 18M12 3C9.4 5.4 9.4 18.6 12 21" /></RowIcon>
           <span>{lang === "en" ? "עברית" : "English"}</span>
         </button>
-        <button type="button" data-kr-a11y-open aria-expanded="false" aria-controls="kr-a11y-panel" className="kr-mrow" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 7, flex: 1, minWidth: 0, padding: "12px 8px", borderRadius: 14, border: `1px solid ${c.cardBd}`, background: c.card, color: c.sub, fontSize: 13.5, fontFamily: "inherit", cursor: "pointer", whiteSpace: "nowrap" }}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" style={{ flex: "none", opacity: 0.75 }} aria-hidden="true"><circle cx="12" cy="4.2" r="1.7" fill="currentColor" stroke="none" /><path d="M4.5 8.2h15M9.4 8.2 8.2 21M14.6 8.2 15.8 21M8.7 14h6.6" /></svg>
-          <span>{t("נגישות")}</span>
+        <button type="button" data-kr-a11y-open aria-expanded="false" aria-controls="kr-a11y-panel" className="kr-mrow" style={rowStyle}>
+          <RowIcon><circle cx="12" cy="4.2" r="1.7" fill="currentColor" stroke="none" /><path d="M4.5 8.2h15M9.4 8.2 8.2 21M14.6 8.2 15.8 21M8.7 14h6.6" /></RowIcon>
+          <span>{t("התאמות נגישות")}</span>
         </button>
-        </div>
-        <a href={BOT_URL} style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: 12, minHeight: 54, borderRadius: 15, background: c.accent, color: "#FFFFFF", fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 17.5 }}>
-          {t("התחילו עכשיו בחינם")}
-        </a>
       </nav>
     </header>
   );

@@ -23,6 +23,8 @@ export default function BotFab() {
   return (
     <a
       href={BOT_URL}
+      target="_blank"
+      rel="noopener"
       className="kr-fab"
       title={t("לקיריל בטלגרם")}
       style={{

@@ -77,7 +77,7 @@ function PlanCard({ plan }) {
       ) : null}
 
       <div style={{ fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 21, color: c.head }}>{t(plan.name)}</div>
-      <div style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
+      <div style={{ display: "flex", alignItems: "baseline", gap: 10, minHeight: 46 }}>
         <span style={{ fontFamily: "Heebo, sans-serif", fontWeight: 900, fontSize: 46, lineHeight: 1, letterSpacing: "-0.03em", color: c.head }}>
           ₪{plan.price}
         </span>
@@ -98,10 +98,13 @@ function PlanCard({ plan }) {
           </span>
         ) : null}
       </div>
-      {plan.note ? <div style={{ fontSize: 14, color: c.accent, fontWeight: 600, marginTop: -10 }}>{t(plan.note)}</div> : null}
+      {/* Always rendered so all three cards keep the same height. */}
+      <div style={{ fontSize: 14, color: c.accent, fontWeight: 600, marginTop: -10, minHeight: 21 }}>{plan.note ? t(plan.note) : ""}</div>
 
       <a
         href={plan.url}
+        target="_blank"
+        rel="noopener"
         className={plan.hot ? "kr-lift kr-orange" : "kr-lift kr-ghost"}
         style={{
           display: "inline-flex",
@@ -132,7 +135,7 @@ export default function PlansView() {
   return (
     <>
       <section className="kr-sec" style={{ padding: "70px 40px 40px", maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
-        <h1 style={{ fontFamily: "Heebo, sans-serif", fontWeight: 900, fontSize: 54, letterSpacing: "-0.035em", margin: 0, lineHeight: 1.05, color: c.head }}>
+        <h1 className="kr-plans-h1" style={{ fontFamily: "Heebo, sans-serif", fontWeight: 900, fontSize: 54, letterSpacing: "-0.035em", margin: "0 auto", lineHeight: 1.05, color: c.head }}>
           {t("בחרו את החבילה שמתאימה לכם")}
         </h1>
         <div
@@ -182,7 +185,7 @@ export default function PlansView() {
       </section>
 
       <section className="kr-sec" style={{ padding: "0 40px 70px", maxWidth: 1240, margin: "0 auto" }}>
-        <div className="kr-grid3" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0,1fr))", gap: 34, alignItems: "stretch", marginTop: 48 }}>
+        <div className="kr-plans-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0,1fr))", gap: 34, alignItems: "stretch", marginTop: 48 }}>
           {PLANS.map((p) => <PlanCard key={p.name} plan={p} />)}
         </div>
         <div

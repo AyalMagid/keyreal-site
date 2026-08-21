@@ -170,7 +170,7 @@ export default function ArticleView({ article }) {
               <div key={i} style={{ marginTop: 12, paddingTop: 34, borderTop: `1px solid ${rule}`, textAlign: "center" }}>
                 <h2 style={{ margin: "0 0 12px", fontFamily: "Heebo, sans-serif", fontWeight: 900, fontSize: 32, letterSpacing: "-0.03em", color: c.head }}>{b.title}</h2>
                 <p style={{ margin: "0 auto 26px", maxWidth: 600, fontSize: 17.5, lineHeight: 1.65, color: c.sub }}>{b.text}</p>
-                <a href={BOT_URL} style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", padding: "16px 36px", borderRadius: 14, background: ORANGE, color: "#372361", fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 18.5, boxShadow: ORANGE_SHADOW }}>
+                <a href={BOT_URL} target="_blank" rel="noopener" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", padding: "16px 36px", borderRadius: 14, background: ORANGE, color: "#372361", fontFamily: "Heebo, sans-serif", fontWeight: 800, fontSize: 18.5, boxShadow: ORANGE_SHADOW }}>
                   {b.label}
                 </a>
               </div>
