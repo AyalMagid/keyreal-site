@@ -7,7 +7,7 @@ import { BOT_URL } from "../lib/theme";
 // Floating Telegram button. Lives in the shell so it shows on every route,
 // and only after the reader has scrolled past the first screen.
 export default function BotFab() {
-  const { lang } = useSite();
+  const { mode, lang } = useSite();
   const t = translator(lang);
   const [show, setShow] = useState(false);
 
