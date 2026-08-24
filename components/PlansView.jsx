@@ -42,7 +42,7 @@ function PlanCard({ plan }) {
         border: `1px solid ${hover ? c.planHotBd : plan.hot ? c.cardHotBd : c.cardBd}`,
         boxShadow: hover ? c.planGlow : plan.hot ? "0 18px 44px oklch(0.5 0.16 300 / 0.18)" : "none",
         transform: hover ? "scale(1.035)" : "none",
-        zIndex: hover ? 3 : 1,
+        zIndex: hover ? 4 : plan.hot ? 2 : 1,
         transition: "transform 0.25s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.25s ease, border-color 0.25s ease"
       }}
     >
@@ -51,7 +51,7 @@ function PlanCard({ plan }) {
           src="/assets/kiril-wink.png"
           alt=""
           aria-hidden="true"
-          style={{ position: "absolute", right: -4, top: -44, width: 78, height: "auto", display: "block", pointerEvents: "none", zIndex: 2 }}
+          style={{ position: "absolute", right: 3, top: -70, width: 78, height: "auto", display: "block", pointerEvents: "none", zIndex: 2 }}
         />
       ) : null}
 
