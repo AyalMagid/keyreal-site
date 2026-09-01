@@ -215,9 +215,9 @@ export default function PlansView() {
         </div>
 
         <p style={{ margin: "30px auto 0", maxWidth: 820, textAlign: "center", fontSize: 14, lineHeight: 1.7, color: c.muted }}>
-          הרכישה כפופה ל<Link href="/legal#terms" className="kr-link" style={{ color: c.accent }}>תנאי השירות</Link>,{" "}
+          ביצוע הרכישה מהווה אישור ל<Link href="/legal#terms" className="kr-link" style={{ color: c.accent }}>תנאי השירות</Link>,{" "}
           <Link href="/legal#privacy" className="kr-link" style={{ color: c.accent }}>מדיניות הפרטיות</Link> ו
-          <Link href="/legal#cancellation" className="kr-link" style={{ color: c.accent }}>מדיניות הביטולים</Link>. רכישת חבילת חיפוש מבוססת על תיאור החבילה כפי שהוצג למשתמש בעת הרכישה, ולא על תשובות, הסברים או דוגמאות שנמסרו על ידי הבוט
+          <Link href="/legal#cancellation" className="kr-link" style={{ color: c.accent }}>מדיניות הביטולים</Link>, ובקשה להפעלת השירות באופן מיידי. רכישת חבילת החיפוש מבוססת על תיאור החבילה כפי שהוצג בעת הרכישה, ולא על תשובות, הסברים או דוגמאות שנמסרו על ידי הבוט.
         </p>
       </section>
     </>
