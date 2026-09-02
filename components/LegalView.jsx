@@ -10,9 +10,26 @@ export default function LegalView() {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
-    const h = (window.location.hash || "").replace("#", "");
-    const i = DOCS.findIndex((d) => d.id === h);
-    if (i >= 0) setActive(i);
+    const sync = () => {
+      const h = (window.location.hash || "").replace("#", "");
+      const i = DOCS.findIndex((d) => d.id === h);
+      if (i >= 0) {
+        setActive(i);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    };
+    sync();
+    window.addEventListener("hashchange", sync);
+    // Next's client navigation uses pushState, which doesn't fire hashchange
+    const onClick = (e) => {
+      const a = e.target.closest && e.target.closest('a[href*="/legal#"]');
+      if (a) setTimeout(sync, 0);
+    };
+    document.addEventListener("click", onClick);
+    return () => {
+      window.removeEventListener("hashchange", sync);
+      document.removeEventListener("click", onClick);
+    };
   }, []);
 
   const doc = DOCS[active];

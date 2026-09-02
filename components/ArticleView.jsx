@@ -3,17 +3,30 @@ import Link from "next/link";
 import { useSite } from "../lib/site-context";
 import { BOT_URL, ORANGE, ORANGE_SHADOW } from "../lib/theme";
 
-/** Renders **bold** runs without pulling in a markdown dependency. */
+/** Renders **bold** runs and [text](/href) links without a markdown dependency. */
 const rich = (text, strongColor) =>
-  text.split("**").map((part, i) =>
-    i % 2 === 1 ? (
+  text.split("**").map((part, i) => {
+    const nodes = [];
+    const re = /\[([^\]]+)\]\(([^)]+)\)/g;
+    let last = 0, m, k = 0;
+    while ((m = re.exec(part))) {
+      if (m.index > last) nodes.push(part.slice(last, m.index));
+      nodes.push(
+        <Link key={"l" + i + k++} href={m[2]} className="kr-link" style={{ color: ORANGE }}>
+          {m[1]}
+        </Link>
+      );
+      last = m.index + m[0].length;
+    }
+    if (last < part.length) nodes.push(part.slice(last));
+    return i % 2 === 1 ? (
       <strong key={i} style={{ fontWeight: 700, color: strongColor }}>
-        {part}
+        {nodes}
       </strong>
     ) : (
-      <span key={i}>{part}</span>
-    )
-  );
+      <span key={i}>{nodes}</span>
+    );
+  });
 
 export default function ArticleView({ article }) {
   const { c, mode } = useSite();
